@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Triagem - Missão Marte 2030</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Triagem de Astronautas</h1>
+        <p class="subtitle">Missão Marte 2030 - Agência Espacial Brasileira</p>
+
+        <!-- Formulário -->
+        <div class="form-group">
+            <label for="idade">Idade do Candidato:</label>
+            <input type="number" id="idade" placeholder="Ex: 30">
+        </div>
+
+        <div class="form-group">
+            <label for="voo">Horas de Voo:</label>
+            <input type="number" id="voo" placeholder="Ex: 1500">
+        </div>
+
+        <div class="form-group">
+            <label for="psi">Nota Psicológica (0 a 10):</label>
+            <input type="number" id="psi" placeholder="Ex: 9">
+        </div>
+
+        <!-- Botão de Ação -->
+        <button onclick="avaliarCandidato()">Avaliar Candidato</button>
+
+        <!-- Resultado -->
+        <p id="resultado"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
