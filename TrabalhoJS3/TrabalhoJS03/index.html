@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Sistema de Triagem - Missão Marte 2030</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Classes de Resultado */
+        .apto {
+            background-color: #d4edda;
+            color: #155724;
+            display: block !important;
+        }
+
+        .inapto {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block !important;
+        }
+
+        /* Layout de Colunas */
+        .results-container {
+            display: none;
+            margin-top: 40px;
+        }
+
+        .results-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .columns-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .columns-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .column {
+            background-color: #f9f9f9;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .column h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .candidate-item {
+            background-color: white;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .candidate-item strong {
+            color: #333;
+        }
+
+        .candidate-item small {
+            color: #666;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .empty-message {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stats-box {
+            background-color: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .stats-box strong {
+            color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Triagem de Astronautas</h1>
+        <p class="subtitle">Missão Marte 2030 - Agência Espacial Brasileira</p>
+
+        <!-- Formulário -->
+        <div class="form-group">
+            <label>Nome do Candidato:</label>
+            <input type="text" id="nome" placeholder="Ex: João Silva">
+        </div>
+
+        <div class="form-group">
+            <label>Idade do Candidato:</label>
+            <input type="number" id="idade" placeholder="Ex: 30">
+        </div>
+
+        <div class="form-group">
+            <label>Horas de Voo:</label>
+            <input type="number" id="horasVoo" placeholder="Ex: 1500">
+        </div>
+
+        <div class="form-group">
+            <label>Nota Psicológica:</label>
+            <input type="number" id="notaPsico" placeholder="Ex: 8.5" step="0.1">
+        </div>
+
+        <!-- Botões de Ação -->
+        <button onclick="adicionarCandidato()">Adicionar Candidato</button>
+        <button onclick="exibirResultados()" style="background-color: #28a745; margin-top: 10px;">Mostrar Resultados</button>
+
+        <!-- Resultado da Avaliação Individual -->
+        <p id="resultado"></p>
+
+        <!-- Seção de Resultados -->
+        <div class="results-container" id="resultsContainer">
+            <div class="results-title">📊 Resultados da Triagem</div>
+
+            <!-- Primeira Linha: Aptos e Inaptos -->
+            <div class="columns-row">
+                <div class="column">
+                    <h3>✅ Candidatos Aptos</h3>
+                    <div id="aptosColumn" class="empty-message">Nenhum candidato apto ainda</div>
+                </div>
+                <div class="column">
+                    <h3>❌ Candidatos Inaptos</h3>
+                    <div id="inaptosColumn" class="empty-message">Nenhum candidato inapto ainda</div>
+                </div>
+            </div>
+
+            <!-- Segunda Linha: Filtros Especiais -->
+            <div class="columns-row-3">
+                <div class="column">
+                    <h3>👴 Mais de 30 Anos</h3>
+                    <div id="maiorIdadeColumn" class="empty-message">Nenhum candidato</div>
+                </div>
+                <div class="column">
+                    <h3>✈️ Mais de 2000h de Voo</h3>
+                    <div id="maiorVooColumn" class="empty-message">Nenhum candidato</div>
+                </div>
+                <div class="column">
+                    <h3>🧠 Nota Psico > 8.0</h3>
+                    <div id="maiorPsicoColumn" class="empty-message">Nenhum candidato</div>
+                </div>
+            </div>
+
+            <!-- Estatísticas Gerais -->
+            <div class="column" style="margin-top: 20px;">
+                <h3>📈 Estatísticas Gerais</h3>
+                <div class="stats-box">
+                    <strong>Total de Candidatos:</strong> <span id="totalCandidatos">0</span>
+                </div>
+                <div class="stats-box">
+                    <strong>Taxa de Aprovação:</strong> <span id="taxaAprovacao">0%</span>
+                </div>
+                <div class="stats-box">
+                    <strong>Idade Média:</strong> <span id="idadeMedia">0</span> anos
+                </div>
+                <div class="stats-box">
+                    <strong>Horas de Voo Média:</strong> <span id="vooMedia">0</span> horas
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
